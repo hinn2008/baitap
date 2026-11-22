@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra năm nhuận</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 420px; margin: 40px auto; }
+        input { padding: 6px; width: 150px; }
+        button { padding: 6px 12px; }
+        #ketqua { margin-top: 16px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Kiểm tra năm nhuận</h2>
+    <input type="number" id="nam" placeholder="Nhập năm cần kiểm tra">
+    <button onclick="kiemTra()">Kiểm tra</button>
+    <p id="ketqua"></p>
+
+    <script>
+        function laNamNhuan(year) {
+            let isLeapYear = false;
+            if (year % 400 == 0) {
+                isLeapYear = true;
+            } else if (year % 4 == 0 && year % 100 != 0) {
+                isLeapYear = true;
+            }
+            return isLeapYear;
+        }
+
+        function kiemTra() {
+            let year = parseInt(document.getElementById("nam").value);
+            if (isNaN(year)) {
+                alert("Vui lòng nhập một năm hợp lệ!");
+                return;
+            }
+            let msg = year + (laNamNhuan(year) ? ": năm nhuận" : ": năm không nhuận");
+            document.getElementById("ketqua").innerText = msg;
+            alert(msg);
+        }
+        /* Kiểm thử: 12 nhuận, 13 không nhuận, 2100 không nhuận, 2000 nhuận */
+    </script>
+</body>
+</html>

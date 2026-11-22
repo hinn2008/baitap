@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi năm dương lịch sang âm lịch</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 420px; margin: 40px auto; }
+        input { padding: 6px; width: 150px; }
+        button { padding: 6px 12px; }
+        #ketqua { margin-top: 16px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Đổi năm dương lịch sang âm lịch</h2>
+    <input type="number" id="nam_duong_lich" placeholder="Nhập năm dương lịch">
+    <button onclick="doiNam()">Đổi</button>
+    <p id="ketqua"></p>
+
+    <script>
+        function tinhCan(nam) {
+            switch (nam % 10) {
+                case 0: return "Canh";
+                case 1: return "Tân";
+                case 2: return "Nhâm";
+                case 3: return "Quý";
+                case 4: return "Giáp";
+                case 5: return "Ất";
+                case 6: return "Bính";
+                case 7: return "Đinh";
+                case 8: return "Mậu";
+                case 9: return "Kỷ";
+            }
+        }
+
+        function tinhChi(nam) {
+            switch (nam % 12) {
+                case 0: return "Thân";
+                case 1: return "Dậu";
+                case 2: return "Tuất";
+                case 3: return "Hợi";
+                case 4: return "Tý";
+                case 5: return "Sửu";
+                case 6: return "Dần";
+                case 7: return "Mẹo";
+                case 8: return "Thìn";
+                case 9: return "Tỵ";
+                case 10: return "Ngọ";
+                case 11: return "Mùi";
+            }
+        }
+
+        function doiNam() {
+            let nam_duong_lich = parseInt(document.getElementById("nam_duong_lich").value);
+            if (isNaN(nam_duong_lich) || nam_duong_lich < 1) {
+                document.getElementById("ketqua").innerText = "Vui lòng nhập năm hợp lệ!";
+                return;
+            }
+            let nam_am_lich = tinhCan(nam_duong_lich) + " " + tinhChi(nam_duong_lich);
+            document.getElementById("ketqua").innerText =
+                "Năm " + nam_duong_lich + " là năm " + nam_am_lich;
+        }
+        /* Ví dụ: 2024 -> Giáp Thìn, 2000 -> Canh Thìn */
+    </script>
+</body>
+</html>
