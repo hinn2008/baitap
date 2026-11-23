@@ -1,126 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Quản lý sản phẩm</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 700px; margin: 30px auto; border: 2px solid #333; padding: 16px 24px; }
-        h3 { margin: 8px 0; }
-        input[type=text] { padding: 8px; width: 320px; border: 1px dotted #555; }
-        button { padding: 8px 16px; background: #444; color: #fff; border: none; cursor: pointer; }
-        button:hover { background: #222; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { text-align: left; padding: 8px; }
-        tr:nth-child(even) td { background: #eee; }
-        td.ten { cursor: pointer; }
-        #dem { text-align: right; font-weight: bold; }
-        .khung { margin-bottom: 20px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang chủ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="khung">
-        <h3>Add New Product</h3>
-        <input type="text" id="ten_sp" placeholder="New Product">
-        <button onclick="themSanPham()">Add</button>
-    </div>
-
-    <div class="khung" id="khung_sua" style="display:none">
-        <h3>Edit Product</h3>
-        <input type="text" id="ten_sua">
-        <button onclick="suaSanPham()">Sửa</button>
-    </div>
-
-    <h3>Display All Product</h3>
-    <div id="dem"></div>
-    <table>
-        <thead>
-            <tr><th>STT</th><th>Product Name</th><th></th></tr>
-        </thead>
-        <tbody id="bang"></tbody>
-    </table>
-
-    <script>
-        // Bước 2: mảng chứa danh sách sản phẩm
-        let sanPham = [
-            "Sony Xperia", "Samsung Galaxy", "Nokia 6", "Xiaomi Redmi Note 4",
-            "Apple iPhone 6S", "Xiaomi Mi 5s Plus", "Apple iPhone 8 Plus",
-            "Fujitsu F-04E", "Oppo A71"
-        ];
-        let viTriDangSua = -1;
-
-        // Bước 3, 4: hiển thị danh sách
-        function hienThi() {
-            let tbody = document.getElementById("bang");
-            tbody.innerHTML = "";
-            sanPham.forEach(function (ten, i) {
-                let tr = document.createElement("tr");
-
-                let tdStt = document.createElement("td");
-                tdStt.textContent = i + 1;
-
-                let tdTen = document.createElement("td");
-                tdTen.className = "ten";
-                tdTen.textContent = ten;
-                tdTen.title = "Nhấn để sửa tên";
-                tdTen.onclick = function () { chonDeSua(i); };
-
-                let tdXoa = document.createElement("td");
-                let nut = document.createElement("button");
-                nut.textContent = "Delete";
-                nut.onclick = function () { xoaSanPham(i); };
-                tdXoa.appendChild(nut);
-
-                tr.appendChild(tdStt);
-                tr.appendChild(tdTen);
-                tr.appendChild(tdXoa);
-                tbody.appendChild(tr);
-            });
-            document.getElementById("dem").textContent = sanPham.length + " products";
-        }
-
-        // Bước 5: thêm sản phẩm
-        function themSanPham() {
-            let o = document.getElementById("ten_sp");
-            let ten = o.value.trim();
-            if (ten === "") {
-                alert("Vui lòng nhập tên sản phẩm!");
-                return;
-            }
-            sanPham.push(ten);
-            o.value = "";
-            hienThi();
-            alert("Đã thêm sản phẩm: " + ten);
-        }
-
-        // Bước 6: sửa sản phẩm (nhấn vào tên để đưa lên ô sửa)
-        function chonDeSua(i) {
-            viTriDangSua = i;
-            document.getElementById("ten_sua").value = sanPham[i];
-            document.getElementById("khung_sua").style.display = "block";
-        }
-        function suaSanPham() {
-            let ten = document.getElementById("ten_sua").value.trim();
-            if (viTriDangSua < 0 || ten === "") {
-                alert("Vui lòng chọn sản phẩm và nhập tên mới!");
-                return;
-            }
-            sanPham[viTriDangSua] = ten;
-            viTriDangSua = -1;
-            document.getElementById("khung_sua").style.display = "none";
-            hienThi();
-        }
-
-        // Bước 7: xoá sản phẩm
-        function xoaSanPham(i) {
-            sanPham.splice(i, 1);
-            if (viTriDangSua === i) {
-                viTriDangSua = -1;
-                document.getElementById("khung_sua").style.display = "none";
-            }
-            hienThi();
-        }
-
-        hienThi();
-    </script>
+  <div class="home">
+    <h1>Website của Nguyễn Đức Nhiệm</h1>
+    <p>Chọn một trang bên dưới để xem:</p>
+    <ul class="menu">
+      <li><a href="cv.html">CV cá nhân</a></li>
+    </ul>
+  </div>
 </body>
 </html>
